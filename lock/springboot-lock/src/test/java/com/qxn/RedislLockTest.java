@@ -31,8 +31,8 @@ public class RedislLockTest{
 				lock.lock();
 				if(num>0) {
 					System.out.println(Thread.currentThread().getName()+"卖出第"+(101-num)+"张票");
-//					String ticket = jedisCluster.hget("windows", Thread.currentThread().getName());
-//					jedisCluster.hset("windows",Thread.currentThread().getName(),ticket);
+					String ticket = jedisCluster.hget("windows",Thread.currentThread().getName());
+					jedisCluster.hset("windows",Thread.currentThread().getName(), ticket+","+(101-num));
 					num--;
 				}else {
 					break;//跳出循环
