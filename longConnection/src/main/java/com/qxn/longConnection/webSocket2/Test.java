@@ -8,6 +8,7 @@ import java.time.LocalTime;
 @Component
 public class Test implements Runnable{
 
+    // 项目启动后，不断向id为1的WebSocket发送
     @PostConstruct
     public static void main() {
         Thread thread = new Thread(new Test());
