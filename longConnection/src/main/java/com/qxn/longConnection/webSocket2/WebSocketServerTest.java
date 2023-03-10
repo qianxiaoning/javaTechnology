@@ -1,28 +1,22 @@
-package com.qxn.longConnection.webSocket;
+package com.qxn.longConnection.webSocket2;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.websocket.OnClose;
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
-import javax.websocket.Session;
-import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
-
 import org.springframework.stereotype.Component;
 
+import javax.websocket.*;
+import javax.websocket.server.PathParam;
+import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@ServerEndpoint(value = "/ws/{sid}")
+@ServerEndpoint(value = "/wstest/{sid}")
 @Component
-public class WebSocketServer {
+public class WebSocketServerTest {
 
-    private final static Logger log = LoggerFactory.getLogger(WebSocketServer.class);
+    private final static Logger log = LoggerFactory.getLogger(WebSocketServerTest.class);
     //静态变量，用来记录当前在线连接数。应该把它设计成线程安全的。
     private static int onlineCount = 0;
     //与某个客户端的连接会话，需要通过它来给客户端发送数据
@@ -30,7 +24,7 @@ public class WebSocketServer {
     //旧：concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。由于遍历set费时，改用map优化
     //private static CopyOnWriteArraySet<WebSocketServer> webSocketSet = new CopyOnWriteArraySet<WebSocketServer>();
     //新：使用map对象优化，便于根据sid来获取对应的WebSocket
-    private static Map<String, WebSocketServer> websocketMap = new ConcurrentHashMap<>();
+    private static Map<String, WebSocketServerTest> websocketMap = new ConcurrentHashMap<>();
     //接收用户的sid，指定需要推送的用户
     private String sid;
 
@@ -73,7 +67,7 @@ public class WebSocketServer {
     public void onMessage(String message, Session session) {
         log.info("收到来自窗口"+sid+"的信息:"+message);
         if(StringUtils.isNotBlank(message)){
-            for(WebSocketServer server:websocketMap.values()) {
+            for(WebSocketServerTest server:websocketMap.values()) {
                 try {
                     server.sendMessage(message);
                 } catch (IOException e) {
@@ -121,7 +115,7 @@ public class WebSocketServer {
             }
         }*/
         if(StringUtils.isNotBlank(message)){
-            for(WebSocketServer server:websocketMap.values()) {
+            for(WebSocketServerTest server:websocketMap.values()) {
                 try {
                     // sid为null时群发，不为null则只发一个
                     if (sid == null) {
@@ -141,10 +135,10 @@ public class WebSocketServer {
         return onlineCount;
     }
     public static synchronized void addOnlineCount() {
-        WebSocketServer.onlineCount++;
+        WebSocketServerTest.onlineCount++;
     }
     public static synchronized void subOnlineCount() {
-        WebSocketServer.onlineCount--;
+        WebSocketServerTest.onlineCount--;
     }
 }
 

@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <title>websocket通讯</title>
 </head>
+<body>
+<p>【userId】：<div><input id="userId" name="userId" type="text" value="1"/></div>
+<p>【toUserId】：<div><input id="toUserId" name="toUserId" type="text" value="2"/></div>
+<p>【toUserId内容】：<div><input id="contentText" name="contentText" type="text" value="abc"/></div>
+<p>【操作】：<div><input type="button" onclick="openSocket()" value="开启socket"/></div>
+<!--<p>【操作】：<div><input type="button" onclick="sendMessage()" value="发送消息"/></div>-->
+<div class="content" style="height: 300px;overflow: auto;"></div>
+</body>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
 <script>
     var socket;
@@ -15,7 +23,7 @@
             //实现化WebSocket对象，指定要连接的服务器地址与端口  建立连接
             //等同于socket = new WebSocket("ws://localhost:8700/longConnection/ws/25");
             //var socketUrl="${request.contextPath}/ws/"+$("#userId").val();
-            var socketUrl = "ws://localhost:8700/longConnection/ws/"+$("#userId").val();
+            var socketUrl = "ws://localhost:8700/longConnection/wstest/"+$("#userId").val();
             // socketUrl = socketUrl.replace("https","ws").replace("http","ws");
             console.log(socketUrl)
             socket = new WebSocket(socketUrl);
@@ -28,7 +36,9 @@
             socket.onmessage = function(msg) {
                 console.log(msg);
                 console.log(msg.data);
-                //发现消息进入    开始处理前端触发逻辑
+                const content = document.querySelector(".content");
+                content.innerHTML += msg.data + " ";
+                content.scrollTop = content.scrollHeight;
             };
             //关闭事件
             socket.onclose = function() {
@@ -50,12 +60,4 @@
         }
     }
 </script>
-<body>
-<p>【userId】：<div><input id="userId" name="userId" type="text" value="11"/></div>
-<p>【toUserId】：<div><input id="toUserId" name="toUserId" type="text" value="22"/></div>
-<p>【toUserId内容】：<div><input id="contentText" name="contentText" type="text" value="abc"/></div>
-<p>【操作】：<div><input type="button" onclick="openSocket()" value="开启socket"/></div>
-<p>【操作】：<div><input type="button" onclick="sendMessage()" value="发送消息"/></div>
-</body>
-
 </html>

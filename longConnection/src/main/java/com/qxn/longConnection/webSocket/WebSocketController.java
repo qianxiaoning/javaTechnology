@@ -22,6 +22,7 @@ public class WebSocketController {
         mav.addObject("cid", cid);
         return mav;
     }
+
     //推送数据接口
     @ResponseBody
     @RequestMapping("/socket/push/{cid}")
