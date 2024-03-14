@@ -1,5 +1,12 @@
 ### springboot-lock
 #### 后台服务器集群下，redis分布式锁
+---
+- Synchronized锁
+- lock锁
+- 分布式锁
+  - mysql分布式锁
+  - redis分布式锁
+  - zookeeper分布式锁
 ```
 概要：
 1.锁的使用场景
