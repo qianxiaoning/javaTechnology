@@ -8,7 +8,10 @@
 
 4.**OperateFactory工厂类**，分别用spring, 硬编码, 枚举，3种方式实现工厂的获取子类方法
 
-5.FactoryPatternApplicationTests使用：  注入operateFactory工厂实例，operateFactory.getOperateBySpring("ck");获取子类
+5.FactoryPatternApplicationTests使用：  
+注入operateFactory工厂实例获取子类，operateFactory.getOperateBySpring("ck");
 
-6.SimpleTest使用：  注入工厂对象，OperateFactory.getDbOperateByHardcode("hive"); 
-OperateFactory.getDbOperateByEnum("ck");工厂对象根据code得到对应的函数子类
+6.SimpleTest使用：  
+注入工厂类，调用静态方法获取子类，  
+OperateFactory.getDbOperateByHardcode("hive"); 
+OperateFactory.getDbOperateByEnum("ck");
