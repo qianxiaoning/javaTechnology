@@ -10,4 +10,4 @@
 
 4.使用：注入工厂对象，工厂对象根据code得到对应的函数子类
 
-<font color="red">想要变色的字体</font>
+<font color="#ff557f">想要变色的字体</font>
