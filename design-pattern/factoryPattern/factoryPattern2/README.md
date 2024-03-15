@@ -4,6 +4,7 @@
 2.实现AddFunction加法函数类，继承Function接口，做calculate方法的具体实现
 3.FunctionFactory工厂类，类初始化的时候，将所有实现Function接口的函数赋到Map<String, Function>里，
 再创建根据code获取Function方法
-4.使用：注入工厂对象，工厂对象根据code得到对应的函数==子==类
+4.使用：注入工厂对象，工厂对象根据code得到对应的函数子<font color = red>字体颜色改为红色</font>
+类
 ```
-==d==
+<font color = red>字体颜色改为红色</font>
