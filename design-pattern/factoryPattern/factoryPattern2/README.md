@@ -14,5 +14,5 @@ operateFactory.getOperateBySpring("ck");
 
 6.SimpleTest使用：  
 注入工厂类，调用静态方法获取子类  
-OperateFactory.getDbOperateByHardcode("hive"); 
+OperateFactory.getDbOperateByHardcode("hive");  
 OperateFactory.getDbOperateByEnum("ck");
