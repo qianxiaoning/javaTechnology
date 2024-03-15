@@ -1,13 +1,14 @@
 ### factoryPattern 工厂模式
 ---
+1.定义IDbOperate数据源接口，定义数据源公共方法： getCode, addOneData, updateOneData, ...
 
-1.定义Function函数接口，定义函数公共方法： getCode，calculate
+2.实现CommonOperate公共数据源类，继承IDbOperate接口，做公共实现
 
-2.实现AddFunction加法函数类，继承Function接口，做calculate方法的具体实现
+3.实现如ClickhouseOperate ck数据源类，继承CommonOperate父类，做clickhouse的方法具体实现
 
-3.**FunctionFactory工厂类**，类初始化的时候，将所有实现Function接口的函数赋到Map<String, Function>里，
-再创建根据code获取Function方法
+4.**OperateFactory工厂类**，分别用spring, 硬编码, 枚举，3种方式实现工厂的获取子类方法
 
-4.使用：注入工厂对象，工厂对象根据code得到对应的函数子类
+5.FactoryPatternApplicationTests使用：  注入operateFactory工厂实例，operateFactory.getOperateBySpring("ck");获取子类
 
-<font color="#ff557f">想要变色的字体</font>
+6.SimpleTest使用：  注入工厂对象，OperateFactory.getDbOperateByHardcode("hive"); 
+OperateFactory.getDbOperateByEnum("ck");工厂对象根据code得到对应的函数子类
