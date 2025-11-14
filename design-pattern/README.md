@@ -25,6 +25,39 @@ java springboot
 不同支付方式（支付宝、微信、银行卡）
 不同排序算法（快排、归排）
 不同价格计算方式（VIP价、满减价）
+
+```
+```
+项目包结构：
+src/main/java/com/yourcompany/yourproject/
+├── controller/
+│   └── QueryController.java
+├── service/
+│   ├── impl/
+│   │   └── CompositeQueryServiceImpl.java
+│   └── CompositeQueryService.java
+├── dao/
+│   ├── repository/
+│   │   ├── LotRepository.java
+│   │   ├── EquipmentRepository.java
+│   │   └── DurableRepository.java
+│   └── entity/
+│       ├── Lot.java
+│       ├── Equipment.java
+│       └── Durable.java
+├── strategy/                    // 新建策略包
+│   ├── factory/
+│   │   └── IdQueryStrategyFactory.java
+│   ├── impl/
+│   │   ├── LotIdQueryStrategy.java
+│   │   ├── EqpIdQueryStrategy.java
+│   │   └── DurableIdQueryStrategy.java
+│   └── IdQueryStrategy.java
+├── dto/
+│   ├── QueryResultDTO.java
+│   └── MultiIdQueryRequest.java
+└── config/                     // 可选：如果有策略配置
+    └── StrategyConfig.java
 ```
 下面我给你一个 **完全符合你需求**、并且 **可扩展性最强** 的方案：
 
